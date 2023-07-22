@@ -7,31 +7,31 @@ export type SetDocument = HydratedDocument<Set>;
 export class Set {
   @Prop()
   scryfallId: string;
-  
+
   @Prop()
   code: string;
-  
+
   @Prop()
   name: string;
-  
+
   @Prop()
   released_at: string;
-  
+
   @Prop()
   set_type: string;
-  
+
   @Prop()
   card_count: number;
-  
+
   @Prop()
   digital: boolean;
-  
+
   @Prop()
   block_code: string;
-  
+
   @Prop()
   block: string;
-  
+
   @Prop()
   icon_svg_uri: string;
 }
