@@ -17,7 +17,7 @@ export class CardService {
     return this.cardModel.findOne({ name: expression }).exec();
   }
 
-  async create(createCardDto: any): Promise<Card> {
+  async create(createCardDto: CreateCardDto): Promise<Card> {
     const createdCard = new this.cardModel(createCardDto);
     return createdCard.save();
   }
