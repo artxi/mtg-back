@@ -37,8 +37,8 @@ export class ScryfallService {
         map(response => response.data)
       )
       .pipe(
-        catchError(() => {
-          throw new Error('API resource not found');
+        catchError((e) => {
+          throw new Error(e.response.data.details);
         }),
       );
 
