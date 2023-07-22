@@ -11,7 +11,7 @@ export class CardService {
     return `<img src=${card.image_uris.normal}>`;
   }
 
-  async searchCard(name: string): Promise<any> {
+  async searchCard(name: string): Promise<string> {
     const cards = await this.scryfallService.searchCardsByName(name);
 
     let response = '';

@@ -6,12 +6,12 @@ export class CardController {
   constructor(private readonly cardService: CardService) {}
 
   @Get('card/:name')
-  getCard(@Param() { name }): Promise<any> {
+  getCard(@Param() { name }): Promise<string> {
     return this.cardService.getCard(name);
   }
 
   @Get('search/:name')
-  searchCard(@Param() { name }): Promise<any> {
+  searchCard(@Param() { name }): Promise<string> {
     return this.cardService.searchCard(name);
   }
 }
