@@ -1,12 +1,13 @@
 import { Controller, Get, Query } from '@nestjs/common';
 import { CardService } from './card.service';
+import { Card } from './card.schema';
 
 @Controller()
 export class CardController {
   constructor(private readonly cardService: CardService) {}
 
   @Get('cards')
-  getCards(@Query() params: any ): Promise<string> {
+  getCards(@Query() params: any ): Promise<Card> {
     if (params.name) {
       return this.cardService.getCardByName(params.name);
     }

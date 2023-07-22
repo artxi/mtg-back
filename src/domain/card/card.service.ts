@@ -13,7 +13,8 @@ export class CardService {
   ) {}
 
   async findByName(name: string): Promise<Card> {
-    return this.cardModel.findOne({ name }).exec();
+    const expression = new RegExp(name, 'i');
+    return this.cardModel.findOne({ name: expression }).exec();
   }
 
   async create(createCardDto: any): Promise<Card> {
@@ -25,16 +26,29 @@ export class CardService {
     return this.cardModel.find().exec();
   }
 
-  async getCardByName(name: string): Promise<string> {
-    // Find first in DB
-    // If found in DB return
-    // Else fetch from scryfall, save in DB and return
-    const card = await this.scryfallService.getCardByName(name);
+  /**
+   * Retrieve a card DTO. Will fetch info from Scryfall if the card is not present in the database
+   * @param name Exact card name, case-insensitive
+   * @returns A card DTO
+   */
+  async getCardByName(name: string): Promise<Card> {
+    let card = await this.findByName(name);
+
+    if (card) {
+      return card;
+    }
+
+    const scryfallCard = await this.scryfallService.getCardByName(name);
+
+    scryfallCard.scryfallId = scryfallCard.id;
+    delete scryfallCard.id;
+
+    card = await this.create(scryfallCard);
 
     return card;
   }
 
-  async listCardsByName(name: string): Promise<string> {
+  async listCardsByName(name: string): Promise<Card> {
     return this.scryfallService.searchCardsByName(name);
   }
 }
