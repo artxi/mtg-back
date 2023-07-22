@@ -22,6 +22,10 @@ export class SetService {
     return createdSet.save();
   }
 
+  async findAll(): Promise<Set[]> {
+    return this.setModel.find().exec();
+  }
+
   async getSetByCode(code: string): Promise<Set> {
     let set = await this.findByCode(code);
 
@@ -39,7 +43,11 @@ export class SetService {
     return set;
   }
 
-  async listSets(): Promise<Set> {
-    return this.scryfallService.listSets();
+  /**
+   * List all sets present in the database
+   * @returns an array of Sets
+   */
+  async listSets(): Promise<any> {
+    return this.findAll();
   }
 }
