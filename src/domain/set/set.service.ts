@@ -17,9 +17,9 @@ export class SetService {
     return this.setModel.findOne({ code: expression }).exec();
   }
 
-  async create(createCardDto: CreateSetDto): Promise<Set> {
-    const createdCard = new this.setModel(createCardDto);
-    return createdCard.save();
+  async create(createSetDto: CreateSetDto): Promise<Set> {
+    const createdSet = new this.setModel(createSetDto);
+    return createdSet.save();
   }
 
   async getSetByCode(code: string): Promise<Set> {
@@ -29,12 +29,12 @@ export class SetService {
       return set;
     }
 
-    const scryfallCard = await this.scryfallService.getSetByCode(code);
+    const scryfallSet = await this.scryfallService.getSetByCode(code);
 
-    scryfallCard.scryfallId = scryfallCard.id;
-    delete scryfallCard.id;
+    scryfallSet.scryfallId = scryfallSet.id;
+    delete scryfallSet.id;
 
-    set = await this.create(scryfallCard);
+    set = await this.create(scryfallSet);
 
     return set;
   }
