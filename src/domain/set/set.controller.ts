@@ -1,4 +1,4 @@
-import { Controller, Get, Param } from '@nestjs/common';
+import { Controller, Get, Query } from '@nestjs/common';
 import { SetService } from './set.service';
 
 @Controller()
@@ -6,12 +6,11 @@ export class SetController {
   constructor(private readonly setService: SetService) {}
 
   @Get('sets')
-  listSets(@Param() {}): Promise<string> {
-    return this.setService.listSets();
-  }
+  getSets(@Query() params: any): Promise<string> {
+    if (params.code) {
+      return this.setService.getSetByCode(params.code);
+    }
 
-  @Get('sets/:name')
-  getSet(@Param() { name: code }): Promise<string> {
-    return this.setService.getSet(code);
+    return this.setService.listSets();
   }
 }

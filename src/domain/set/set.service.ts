@@ -5,7 +5,7 @@ import { ScryfallService } from '../scryfall/scryfall.service';
 export class SetService {
   constructor(private scryfallService: ScryfallService) {}
 
-  async getSet(code: string): Promise<string> {
+  async getSetByCode(code: string): Promise<string> {
     return this.scryfallService.getSetByCode(code);
   }
 
