@@ -23,6 +23,17 @@ export class ScryfallService {
     return response.data;
   }
 
+  async getSetByCode(code: string): Promise<any> {
+    return this.callScryfallApi(`${scryfallUri}/sets/${code}`);
+  }
+
+  async listSets(): Promise<any> {
+    // This will probably need pagination at some point. Response contains has_more attribute
+    const response = await this.callScryfallApi(`${scryfallUri}/sets`);
+
+    return response.data;
+  }
+
   private async callScryfallApi(uri: string) {
     const { data } = await firstValueFrom(
       this.httpService.get(uri).pipe(),
