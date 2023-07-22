@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { HttpService } from '@nestjs/axios';
-import { firstValueFrom } from 'rxjs';
+import { firstValueFrom, catchError, map } from 'rxjs';
 
 const scryfallUri = 'https://api.scryfall.com';
 
@@ -31,11 +31,18 @@ export class ScryfallService {
   }
 
   private async callScryfallApi(uri: string) {
-    const { data } = await firstValueFrom(
-      this.httpService.get(uri).pipe(),
-    );
+    const request = this.httpService
+      .get(uri)
+      .pipe(
+        map(response => response.data)
+      )
+      .pipe(
+        catchError(() => {
+          throw new Error('API resource not found');
+        }),
+      );
 
-    return data;
+    return firstValueFrom(request);
   }
 }
 
