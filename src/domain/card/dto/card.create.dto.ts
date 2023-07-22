@@ -1,9 +1,11 @@
 export class CreateCardDto {
   readonly name: string;
+  readonly printed_name: string;
   readonly scryfallId: string;
   readonly cardmarket_id: number;
   readonly lang: string;
   readonly released_at: string;
+  readonly layout: string;
   readonly image_uris: {
     readonly small: string,
     readonly normal: string,
@@ -15,7 +17,11 @@ export class CreateCardDto {
   readonly mana_cost: string;
   readonly cmc: number;
   readonly type_line: string;
+  readonly printed_type_line: string;
   readonly oracle_text: string;
+  readonly printed_text: string;
+  readonly power: string;
+  readonly toughness: string;
   readonly colors: string[];
   readonly color_identity: string[];
   readonly keywords: string[];
@@ -42,10 +48,13 @@ export class CreateCardDto {
     readonly premodern: string,
     readonly predh: string
   };
+  readonly games: string[];
   readonly reserved: boolean;
   readonly foil: boolean;
   readonly nonfoil: boolean;
+  readonly finishes: string[];
   readonly reprint: boolean;
+  readonly variation: boolean;
   readonly set_id: string;
   readonly set: string;
   readonly set_name: string;
@@ -54,4 +63,6 @@ export class CreateCardDto {
   readonly rarity: string;
   readonly artist: string;
   readonly frame: string;
+  readonly frame_effects: string[];
+  readonly border_color: string;
 }

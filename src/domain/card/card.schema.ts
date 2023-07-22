@@ -9,6 +9,9 @@ export class Card {
   name: string;
 
   @Prop()
+  printed_name: string;
+
+  @Prop()
   scryfallId: string;
 
   @Prop()
@@ -19,6 +22,9 @@ export class Card {
 
   @Prop()
   released_at: string;
+
+  @Prop()
+  layout: string;
 
   @Prop({ type: Object })
   image_uris: {
@@ -40,7 +46,19 @@ export class Card {
   type_line: string;
 
   @Prop()
+  printed_type_line: string;
+
+  @Prop()
   oracle_text: string;
+
+  @Prop()
+  printed_text: string;
+
+  @Prop()
+  power: string;
+
+  @Prop()
+  toughness: string;
 
   @Prop()
   colors: string[];
@@ -77,6 +95,9 @@ export class Card {
   };
 
   @Prop()
+  games: string[];
+
+  @Prop()
   reserved: boolean;
 
   @Prop()
@@ -86,7 +107,13 @@ export class Card {
   nonfoil: boolean;
 
   @Prop()
+  finishes: string[];
+
+  @Prop()
   reprint: boolean;
+
+  @Prop()
+  variation: boolean;
 
   @Prop()
   set_id: string;
@@ -111,6 +138,12 @@ export class Card {
 
   @Prop()
   frame: string;
+
+  @Prop()
+  frame_effects: string[];
+
+  @Prop()
+  border_color: string;
 }
 
 export const CardSchema = SchemaFactory.createForClass(Card);
