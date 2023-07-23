@@ -22,15 +22,14 @@ export class CardService {
     return createdCard.save();
   }
 
-  async findAll(): Promise<Card[]> {
-    return this.cardModel.find().exec();
+  async list(
+    options: any,
+    params: any,
+    projection: any
+  ): Promise<Card[]> {
+    return this.cardModel.find({...options, ...params}, projection).exec();
   }
 
-  /**
-   * Retrieve a card DTO. Will fetch info from Scryfall if the card is not present in the database
-   * @param name Exact card name, case-insensitive
-   * @returns A card DTO
-   */
   async getCardByName(name: string): Promise<Card> {
     let card = await this.findByName(name);
 

@@ -4,6 +4,7 @@ import { Set } from './set.schema';
 import { Model } from 'mongoose';
 import { ScryfallService } from '../scryfall/scryfall.service';
 import { CardService } from '../card/card.service';
+import { Card } from '../card/card.schema';
 import { CreateSetDto } from './dto/set.create.dto';
 
 @Injectable()
@@ -24,7 +25,7 @@ export class SetService {
     return createdSet.save();
   }
 
-  async findAll(): Promise<Set[]> {
+  async listSets(): Promise<any> {
     return this.setModel.find().exec();
   }
 
@@ -45,11 +46,11 @@ export class SetService {
     return set;
   }
 
-  /**
-   * List all sets present in the database
-   * @returns an array of Sets
-   */
-  async listSets(): Promise<any> {
-    return this.findAll();
+  async getSetCards(code: string, params: any): Promise<Card[]> {
+    return this.cardService.list(
+      {set: code},
+      params,
+      {name: 1, image: '$image_uris.normal'}
+    );
   }
 }
