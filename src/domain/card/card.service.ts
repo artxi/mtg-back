@@ -13,7 +13,7 @@ export class CardService {
   ) {}
 
   async getCards(_id: string) {
-    return 
+    return;
   }
 
   async findByName(name: string): Promise<Card> {
@@ -30,12 +30,8 @@ export class CardService {
     return createdCard.save();
   }
 
-  async list(
-    query: any,
-    params: any,
-    projection: any
-  ): Promise<Card[]> {
-    return this.cardModel.find({...query, ...params}, projection).exec();
+  async list(query: any, params: any, projection: any): Promise<Card[]> {
+    return this.cardModel.find({ ...query, ...params }, projection).exec();
   }
 
   async getCardByName(name: string): Promise<Card> {

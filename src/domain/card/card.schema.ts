@@ -28,12 +28,12 @@ export class Card {
 
   @Prop({ type: Object })
   image_uris: {
-    small: string,
-    normal: string,
-    large: string,
-    png: string,
-    art_crop: string,
-    border_crop: string
+    small: string;
+    normal: string;
+    large: string;
+    png: string;
+    art_crop: string;
+    border_crop: string;
   };
 
   @Prop()
@@ -71,27 +71,27 @@ export class Card {
 
   @Prop({ type: Object })
   legalities: {
-    standard: string,
-    future: string,
-    historic: string,
-    gladiator: string,
-    pioneer: string,
-    explorer: string,
-    modern: string,
-    legacy: string,
-    pauper: string,
-    vintage: string,
-    penny: string,
-    commander: string,
-    oathbreaker: string,
-    brawl: string,
-    historicbrawl: string,
-    alchemy: string,
-    paupercommander: string,
-    duel: string,
-    oldschool: string,
-    premodern: string,
-    predh: string
+    standard: string;
+    future: string;
+    historic: string;
+    gladiator: string;
+    pioneer: string;
+    explorer: string;
+    modern: string;
+    legacy: string;
+    pauper: string;
+    vintage: string;
+    penny: string;
+    commander: string;
+    oathbreaker: string;
+    brawl: string;
+    historicbrawl: string;
+    alchemy: string;
+    paupercommander: string;
+    duel: string;
+    oldschool: string;
+    premodern: string;
+    predh: string;
   };
 
   @Prop()

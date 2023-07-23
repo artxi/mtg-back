@@ -26,17 +26,15 @@ export class SetService {
   }
 
   async listSets(): Promise<Set[]> {
-    return this.list({},{},
-      {name: 1, code: 1, date: '$released_at', image: '$icon_svg_uri'}
+    return this.list(
+      {},
+      {},
+      { name: 1, code: 1, date: '$released_at', image: '$icon_svg_uri' }
     );
   }
 
-  async list(
-    query: any,
-    params: any,
-    projection: any
-  ): Promise<Set[]> {
-    return this.setModel.find({...query, ...params}, projection).exec();
+  async list(query: any, params: any, projection: any): Promise<Set[]> {
+    return this.setModel.find({ ...query, ...params }, projection).exec();
   }
 
   async getSetByCode(code: string): Promise<Set> {
@@ -57,10 +55,9 @@ export class SetService {
   }
 
   async getSetCards(code: string, params: any): Promise<Card[]> {
-    return this.cardService.list(
-      {set: code},
-      params,
-      {name: 1, image: '$image_uris.normal'}
-    );
+    return this.cardService.list({ set: code }, params, {
+      name: 1,
+      image: '$image_uris.normal'
+    });
   }
 }

@@ -14,6 +14,6 @@ import { CardModule } from '../card/card.module';
     CardModule
   ],
   controllers: [SetController],
-  providers: [SetService, ScryfallService],
+  providers: [SetService, ScryfallService]
 })
 export class SetModule {}

@@ -14,7 +14,9 @@ export class ScryfallService {
 
   async searchCardsByName(name: string): Promise<any> {
     // This will probably need pagination at some point. Response contains has_more attribute
-    const response = await this.callScryfallApi(`${scryfallUri}/cards/search?q=%21"${name}"+include%3Aextras&unique=prints`);
+    const response = await this.callScryfallApi(
+      `${scryfallUri}/cards/search?q=%21"${name}"+include%3Aextras&unique=prints`
+    );
 
     return response.data;
   }
@@ -33,17 +35,13 @@ export class ScryfallService {
   private async callScryfallApi(uri: string) {
     const request = this.httpService
       .get(uri)
-      .pipe(
-        map(response => response.data)
-      )
+      .pipe(map((response) => response.data))
       .pipe(
         catchError((e) => {
           throw new Error(e.response.data.details);
-        }),
+        })
       );
 
     return firstValueFrom(request);
   }
 }
-
-
