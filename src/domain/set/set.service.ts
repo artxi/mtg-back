@@ -25,8 +25,18 @@ export class SetService {
     return createdSet.save();
   }
 
-  async listSets(): Promise<any> {
-    return this.setModel.find().exec();
+  async listSets(): Promise<Set[]> {
+    return this.list({},{},
+      {name: 1, code: 1, date: '$released_at', image: '$icon_svg_uri'}
+    );
+  }
+
+  async list(
+    query: any,
+    params: any,
+    projection: any
+  ): Promise<Set[]> {
+    return this.setModel.find({...query, ...params}, projection).exec();
   }
 
   async getSetByCode(code: string): Promise<Set> {

@@ -1,6 +1,5 @@
 import { Controller, Get, Query, Param } from '@nestjs/common';
 import { SetService } from './set.service';
-import { Set } from './set.schema';
 import { Card } from '../card/card.schema';
 
 @Controller()
