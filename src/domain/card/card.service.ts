@@ -12,10 +12,6 @@ export class CardService {
     private scryfallService: ScryfallService
   ) {}
 
-  async getCards(_id: string) {
-    return;
-  }
-
   async findByName(name: string): Promise<Card> {
     const expression = new RegExp(name, 'i');
     return this.cardModel.findOne({ name: expression }).exec();
