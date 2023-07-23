@@ -13,5 +13,6 @@ import { ScryfallService } from '../scryfall/scryfall.service';
   ],
   controllers: [CardController],
   providers: [CardService, ScryfallService],
+  exports: [CardService]
 })
 export class CardModule {}

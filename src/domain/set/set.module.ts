@@ -5,11 +5,13 @@ import { SetController } from './set.controller';
 import { SetService } from './set.service';
 import { Set, SetSchema } from './set.schema';
 import { ScryfallService } from '../scryfall/scryfall.service';
+import { CardModule } from '../card/card.module';
 
 @Module({
   imports: [
     MongooseModule.forFeature([{ name: Set.name, schema: SetSchema }]),
-    HttpModule
+    HttpModule,
+    CardModule
   ],
   controllers: [SetController],
   providers: [SetService, ScryfallService],
