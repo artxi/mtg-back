@@ -12,7 +12,7 @@ export class CardService {
     private scryfallService: ScryfallService
   ) {}
 
-  async getCards(_id: string, params: any, ) {
+  async getCards(_id: string) {
     return 
   }
 
