@@ -8,11 +8,11 @@ const scryfallUri = 'https://api.scryfall.com';
 export class ScryfallService {
   constructor(private httpService: HttpService) {}
 
-  async getCardByName(name: string): Promise<any> {
+  async getCardByName(name: string) {
     return this.callScryfallApi(`${scryfallUri}/cards/named?exact=${name}`);
   }
 
-  async searchCardsByName(name: string): Promise<any> {
+  async searchCardsByName(name: string) {
     // This will probably need pagination at some point. Response contains has_more attribute
     const response = await this.callScryfallApi(
       `${scryfallUri}/cards/search?q=%21"${name}"+include%3Aextras&unique=prints`
@@ -21,11 +21,11 @@ export class ScryfallService {
     return response.data;
   }
 
-  async getSetByCode(code: string): Promise<any> {
+  async getSetByCode(code: string) {
     return this.callScryfallApi(`${scryfallUri}/sets/${code}`);
   }
 
-  async listSets(): Promise<any> {
+  async listSets() {
     // This will probably need pagination at some point. Response contains has_more attribute
     const response = await this.callScryfallApi(`${scryfallUri}/sets`);
 

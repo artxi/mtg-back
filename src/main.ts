@@ -1,16 +1,16 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 
-process.on('uncaughtException', (error: any) => {
-  console.log(error.stack);
+process.on('uncaughtException', (error) => {
+  console.log(error);
 });
 
-process.on('unhandledRejection', (error: any) => {
-  console.log(error.stack);
+process.on('unhandledRejection', (error) => {
+  console.log(error);
 });
 
-process.on('UnhandledPromiseRejectionWarning', (error: any) => {
-  console.log(error.stack);
+process.on('UnhandledPromiseRejectionWarning', (error) => {
+  console.log(error);
 });
 
 async function bootstrap() {

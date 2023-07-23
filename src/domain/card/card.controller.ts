@@ -7,14 +7,8 @@ export class CardController {
   constructor(private readonly cardService: CardService) {}
 
   @Get('cards')
-  getCards(@Query() params: any): Promise<Card> {
-    if (params.name) {
-      return this.cardService.getCardByName(params.name);
-    }
-
-    if (params.search) {
-      return this.cardService.listCardsByName(params.search);
-    }
+  getCards(@Query() params: object): Promise<Card[]> {
+    return this.cardService.listCardsByName(params);
   }
 
   @Get('cards/:id')

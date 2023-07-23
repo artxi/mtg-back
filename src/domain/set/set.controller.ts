@@ -7,7 +7,7 @@ export class SetController {
   constructor(private readonly setService: SetService) {}
 
   @Get('sets')
-  getSets(@Query() params: any) {
+  getSets(@Query() params) {
     if (params.code) {
       return this.setService.getSetByCode(params.code);
     }
@@ -16,10 +16,7 @@ export class SetController {
   }
 
   @Get('sets/:code/cards')
-  getSetCards(
-    @Param('code') code: string,
-    @Query() params: any
-  ): Promise<Card[]> {
+  getSetCards(@Param('code') code: string, @Query() params): Promise<Card[]> {
     return this.setService.getSetCards(code, params);
   }
 }
