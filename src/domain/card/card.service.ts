@@ -31,11 +31,11 @@ export class CardService {
   }
 
   async list(
-    options: any,
+    query: any,
     params: any,
     projection: any
   ): Promise<Card[]> {
-    return this.cardModel.find({...options, ...params}, projection).exec();
+    return this.cardModel.find({...query, ...params}, projection).exec();
   }
 
   async getCardByName(name: string): Promise<Card> {
