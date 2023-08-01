@@ -10,19 +10,19 @@ const SETS_ENDPOINT = '/sets';
 export class ScryfallService {
   constructor(private httpService: HttpService) {}
 
-  setByTcgPlayerId(id: number, params?: SetParams) {
+  setByTcgPlayerId(id: number, params?: ScryfallSetParams) {
     return this.callScryfallApi(`${SETS_ENDPOINT}/tcgplayer/${id}`, params);
   }
 
-  setById(id: string, params?: SetParams) {
+  setById(id: string, params?: ScryfallSetParams) {
     return this.callScryfallApi(`${SETS_ENDPOINT}/${id}`, params);
   }
 
-  setByCode(code: string, params?: SetParams) {
+  setByCode(code: string, params?: ScryfallSetParams) {
     return this.callScryfallApi(`${SETS_ENDPOINT}/${code}`, params);
   }
 
-  listSets(params?: SetParams) {
+  listSets(params?: ScryfallSetParams) {
     return this.callScryfallApi(SETS_ENDPOINT, params);
   }
 
