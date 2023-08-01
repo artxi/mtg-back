@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { HttpService } from '@nestjs/axios';
 import { firstValueFrom, catchError, map } from 'rxjs';
 
@@ -38,7 +38,10 @@ export class ScryfallService {
       .pipe(map((response) => response.data))
       .pipe(
         catchError((e) => {
-          throw new Error(e.response.data.details);
+          throw new HttpException(
+            e.response.data.details,
+            e.response.data.status
+          );
         })
       );
 
