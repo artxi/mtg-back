@@ -4,39 +4,29 @@ import { firstValueFrom, catchError, map } from 'rxjs';
 
 const baseScryfallUri = 'https://api.scryfall.com';
 
+const SETS_ENDPOINT = '/sets';
+
 @Injectable()
 export class ScryfallService {
   constructor(private httpService: HttpService) {}
 
-  async sets(
-    args?: {
-      code?: string;
-      scryfallId?: string;
-      tcgPlayerId?: number;
-    },
-    params?: {
-      format?: string;
-      pretty?: boolean;
-    }
-  ) {
-    let uri = '/sets';
-
-    if (args?.code) {
-      uri += '/' + args.code;
-    }
-
-    if (args?.scryfallId) {
-      uri += '/' + args.scryfallId;
-    }
-
-    if (args?.tcgPlayerId) {
-      uri += '/tcgplayer/' + args.tcgPlayerId;
-    }
-
-    return this.callScryfallApi(uri, params);
+  setByTcgPlayerId(id: number, params?: SetParams) {
+    return this.callScryfallApi(`${SETS_ENDPOINT}/tcgplayer/${id}`, params);
   }
 
-  private async callScryfallApi(uri: string, params = {}) {
+  setById(id: string, params?: SetParams) {
+    return this.callScryfallApi(`${SETS_ENDPOINT}/${id}`, params);
+  }
+
+  setByCode(code: string, params?: SetParams) {
+    return this.callScryfallApi(`${SETS_ENDPOINT}/${code}`, params);
+  }
+
+  listSets(params?: SetParams) {
+    return this.callScryfallApi(SETS_ENDPOINT, params);
+  }
+
+  private callScryfallApi(uri: string, params = {}) {
     const request = this.httpService
       .get(baseScryfallUri + uri, params)
       .pipe(map((response) => response.data))

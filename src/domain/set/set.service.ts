@@ -12,19 +12,20 @@ export class SetService {
     private scryfallService: ScryfallService
   ) {}
 
-  async byCode(code: string) {
-    return this.scryfallService.sets({ code: code });
+  async byCode(code: string, params?: SetParams) {
+    return this.scryfallService.setByCode(code, params);
   }
 
-  async byScryfallId(id: string) {
-    return this.scryfallService.sets({ scryfallId: id });
+  async byScryfallId(id: string, params?: SetParams) {
+    return this.scryfallService.setById(id, params);
   }
 
-  async byTcgPlayerId(id: number) {
-    return this.scryfallService.sets({ tcgPlayerId: id });
+  async byTcgPlayerId(id: number, params?: SetParams) {
+    return this.scryfallService.setByTcgPlayerId(id, params);
   }
 
-  async list() {
-    return this.scryfallService.sets();
+  async list(params?: SetParams) {
+    // TO-DO: Add pagination
+    return this.scryfallService.listSets(params);
   }
 }
